@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% include 'adminsidebar.html' %}
+ <div class="container">
+   <h2 class="ml-5">Company Approval</h2>
+       <form  action="/save_approval/{{d.id}}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <div class="row m-3">
+            <div class="col-sm-8">
+            <label class="font-weight-bold" style="text-align:left;">Company Name</label>
+            <input type="text" name="company_name" class="form-control" value="{{d.company_name}}">
+            </div>
+        </div>
+       <div class="row m-3">
+            <div class="col-sm-4">
+            <label class="font-weight-bold" style="text-align:left;">Username</label>
+            <input type="text" name="username" class="form-control" placeholder="Username">
+            </div>
+          <div class="col-sm-4">
+            <label class="font-weight-bold">Password</label>
+            <input type="text" name="password" class="form-control">
+            </div>
+        </div>
+
+              <div class="row">
+             <div class="col-sm-8">
+            <input type="submit" class="btn btn-info rounded-pill" style="width:100%;" >
+             </div>
+        </div>
+</form>
+    </div>
+</body>
+</html>

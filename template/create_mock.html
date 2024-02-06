@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock Questions and Answers Form</title>
+</head>
+<body>
+{% include 'adminsidebar.html' %}
+<br>
+ <div class="container">
+     <h2>Create Mock Questions and Answers</h2>
+
+<form action="/save_mockqns/" method="POST" id="mockForm" enctype="multipart/form-data">{% csrf_token %}
+
+ <label for="level">Level:</label>
+            <select name="level" required class="form-control">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+
+            <br>
+
+            <label for="category">Category:</label>
+           <select name="category" required class="form-control">
+               {% for i in d%}
+                <option value="{{i.id}}">{{i.categoryname}}</option>
+{% endfor %}
+            </select>
+
+    <div id="questionContainer">
+        <!-- Dynamic question and answer pairs will be added here -->
+    </div>
+
+    <button type="button" onclick="addQuestion()">Add Question</button>
+    <br><br>
+
+    <button type="submit">Submit</button>
+
+</form>
+</div>
+<script>
+    function addQuestion() {
+        const container = document.getElementById('questionContainer');
+
+        const questionDiv = document.createElement('div');
+
+        questionDiv.innerHTML = `
+            <hr>
+
+
+            <label for="question">Question:</label>
+            <textarea name="question[]" rows="4" required class="form-control"></textarea>
+
+            <br>
+               <label for="mark">Choice 1:</label>
+            <input name="choice1[]" type="text" required class="form-control">
+            <br>
+               <label for="mark">Choice 2:</label>
+            <input name="choice2[]" type="text" required class="form-control">
+            <br>
+               <label for="mark">Choice 3:</label>
+            <input name="choice3[]" type="text" required class="form-control">
+            <br>
+               <label for="mark">Choice 4:</label>
+            <input name="choice4[]" type="text" required class="form-control">
+            <br>
+
+            <label for="answer">Answer:</label>
+            <textarea name="answer[]" rows="4" required class="form-control"></textarea>
+
+             <label for="mark">Mark:</label>
+            <input name="mark[]" type="text" required class="form-control">
+
+            <br>
+        `;
+
+        container.appendChild(questionDiv);
+    }
+</script>
+
+</body>
+</html>

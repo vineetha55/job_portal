@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+    		    font-family: arial, sans-serif;
+    		    border-collapse: collapse;
+    		    width: 100%;
+    		}
+    		td, th {
+    		    border: 1px solid #dddddd;
+    		    text-align: left;
+    		    padding: 8px;
+    		}
+    </style>
+</head>
+<body>
+{% include 'adminsidebar.html' %}
+<div class="container" data-ng-app="myApp" data-ng-controller="myCtrl">
+    <div class="row">
+      <div class="col-md-2">
+        Search:
+      </div>
+      <div class="col-md-10">
+        <input type="text" class="search" data-ng-model="table" />
+      </div>
+    </div>
+    <br/>
+    <table>
+      <tr>
+
+        <th>Company Name</th>
+          <th>Owner</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Website Link</th>
+        <th>Action</th>
+      </tr>
+        {% for i in data%}
+      <tr data-ng-repeat="customer in people | filter: table">
+
+        <td>{{i.company_name}}</td>
+           <td>{{i.owner}}</td>
+           <td>{{i.email}}</td>
+           <td>{{i.mobileno}}</td>
+           <td><a href="{{i.website}}" target="_blank">{{i.website}}</a></td>
+          {% if i.status == 'Requested' %}
+          <td><a href="/request_approval/{{i.id}}" class="btn btn-success">Approve</a></td>
+          {% else %}
+           <td class="text-success">Approve</td>
+          {% endif %}
+      </tr>
+        {% endfor %}
+    </table>
+    <div data-pagination="" data-num-pages="numPages()" data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true"></div>
+  </div>
+</body>
+<script>var app = angular.module('myApp', ['ui.bootstrap']);
+app.controller('myCtrl', function($scope) {
+  $scope.customers = [{
+    "Name": "Alfreds Futterkiste",
+    "City": "Berlin",
+    "Country": "Germany"
+  }, {
+    "Name": "Ana Trujillo Emparedados y helados",
+    "City": "México D.F.",
+    "Country": "Mexico"
+  }, {
+    "Name": "Antonio Moreno Taquería",
+    "City": "México D.F.",
+    "Country": "Mexico"
+  }, {
+    "Name": "Around the Horn",
+    "City": "London",
+    "Country": "UK"
+  }, {
+    "Name": "B's Beverages",
+    "City": "London",
+    "Country": "UK"
+  }, {
+    "Name": "Berglunds snabbköp",
+    "City": "Luleå",
+    "Country": "Sweden"
+  }, {
+    "Name": "Blauer See Delikatessen",
+    "City": "Mannheim",
+    "Country": "Germany"
+  }, {
+    "Name": "Blondel père et fils",
+    "City": "Strasbourg",
+    "Country": "France"
+  }, {
+    "Name": "Bólido Comidas preparadas",
+    "City": "Madrid",
+    "Country": "Spain"
+  }, {
+    "Name": "Bon app'",
+    "City": "Marseille",
+    "Country": "France"
+  }, {
+    "Name": "Bottom-Dollar Marketse",
+    "City": "Tsawassen",
+    "Country": "Canada"
+  }, {
+    "Name": "Cactus Comidas para llevar",
+    "City": "Buenos Aires",
+    "Country": "Argentina"
+  }, {
+    "Name": "Centro comercial Moctezuma",
+    "City": "México D.F.",
+    "Country": "Mexico"
+  }, {
+    "Name": "Chop-suey Chinese",
+    "City": "Bern",
+    "Country": "Switzerland"
+  }, {
+    "Name": "Comércio Mineiro",
+    "City": "São Paulo",
+    "Country": "Brazil"
+  }],
+  $scope.people=[],
+  $scope.currentPage = 1,
+  $scope.numPerPage = 5,
+  $scope.maxSize = 5;
+
+
+
+  $scope.numPages = function () {
+    return Math.ceil($scope.customers.length / $scope.numPerPage);
+  };
+
+  $scope.$watch('currentPage + numPerPage', function() {
+    var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+    , end = begin + $scope.numPerPage;
+
+    $scope.people = $scope.customers.slice(begin, end);
+  });
+
+
+});</script>
+</html>

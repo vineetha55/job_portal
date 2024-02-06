@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% include 'adminsidebar.html' %}
+  <div class="col-md-6 offset-md-3 mt-5">
+
+    <br>
+    <h1>Categories  Form</h1>
+    <form accept-charset="UTF-8" action="/save_category/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+      <div class="form-group">
+        <label for="exampleInputName">Category</label>
+        <input type="text" name="category" class="form-control" id="exampleInputName" placeholder="Enter category name and surname" required="required">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1" required="required">Status</label>
+        <select name="status" class="form-control"><option>Available</option>
+        <option>Unavailable</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</body>
+
+</html>
+

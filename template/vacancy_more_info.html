@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% include 'cmpsidebar.html' %}
+
+<section style="background-color: #eee; width:100%;">
+    <br>
+<br>
+<br>
+<br>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-12">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Job Title</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{d.jobtitle}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{d.address}}</p>
+              </div>
+            </div>
+            <hr>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Job Type</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{d.jobtype}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Schedule</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{d.schedule}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Experience</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{d.experiencelevel}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Openings</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{d.numberofopening}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Hiring timing Period</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{d.hiringtimeline}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Salary Minimum</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{d.minimum}}</p>
+              </div>
+            </div>
+            <hr>
+              <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Salary Maximum</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{d.maximum}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Rate</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{d.rate}}</p>
+              </div>
+            </div>
+            <hr>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Skills</p>
+              </div>
+
+              <div class="col-sm-9">
+                  {% for f in d1 %}
+                <p>
+                <span class="text-muted mb-0">{{f.skills}}</span>
+                <span class="text-muted mb-0">{{f.type}}</span>
+                  </p>
+                 {% endfor %}
+              </div>
+
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
