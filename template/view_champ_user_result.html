@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% include 'adminsidebar.html' %}
+<div class="container">
+    <h2>Create Championship</h2>
+    <form method="POST" enctype="multipart/form-data" action="/save_programme_result/{{f.id}}">{% csrf_token %}
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="question1">Question 1:</label>
+        <textarea class="form-control" id="question1" name="question1" rows="4" required readonly>{{f.champ.question1}}</textarea>
+      </div>
+        <div class="form-group">
+        <label for="question1">Answer 1:</label>
+        <textarea class="form-control" id="question1" name="answer1" rows="4" required readonly>{{f.answer1}}</textarea>
+      </div>
+        <div class="form-group">
+             <label for="question1">Result 1</label>
+            <input type="text" name="result1" placeholder="Pass or Failed" class="form-control">
+        </div>
+      <div class="form-group">
+        <label for="question2">Question 2:</label>
+        <textarea class="form-control" id="question2" name="question2" rows="4" required>{{f.champ.question2}}</textarea>
+      </div>
+         <div class="form-group">
+        <label for="question1">Answer 2:</label>
+        <textarea class="form-control" id="question1" name="answer2" rows="4" required readonly>{{f.answer2}}</textarea>
+      </div>
+        <div class="form-group">
+             <label for="question1">Result 2</label>
+            <input type="text" name="result2" placeholder="Pass or Failed" class="form-control">
+        </div>
+      <div class="form-group">
+        <label for="question3">Question 3:</label>
+        <textarea class="form-control" id="question3" name="question3" rows="4" required>{{f.champ.question3}}</textarea>
+      </div>
+         <div class="form-group">
+        <label for="question1">Answer 3:</label>
+        <textarea class="form-control" id="question1" name="answer3" rows="4" required readonly>{{f.answer3}}</textarea>
+      </div>
+        <div class="form-group">
+             <label for="question1">Result 3</label>
+            <input type="text" name="result3" placeholder="Pass or Failed" class="form-control">
+        </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

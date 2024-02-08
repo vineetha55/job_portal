@@ -40,45 +40,34 @@
 <br>
 <hr>
 <div class="container">
-    <form method="POST" action="/search_mock/" enctype="multipart/form-data">{% csrf_token %}
-    <div class="row">
-        <div class="col-sm-4">
-            <select class="form-control" name="level">
-                <option>------------Select Any Level---------------</option>
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-            </select>
-        </div>
-        <div class="col-sm-4">
-            <select class="form-control" name="category">
-                <option>------------Select Any Category---------------</option>
-                {% for i in f%}
-                <option value="{{i.id}}">{{i.categoryname}}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="col-sm-4">
-           <button type="submit" class="form-control btn btn-info" >Search</button>
-        </div>
-    </div>
-        </form>
-</div>
+    <h2>Championship List</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Answer</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td>{{d.champ.question1}}</td>
+             <td>{{d.answer1}}</td>
+            <td>{{d.result1}}</td>
+        </tr>
+      <tr>
+             <td>{{d.champ.question2}}</td>
+            <td>{{d.answer2}}</td>
+          <td>{{d.result2}}</td>
+        </tr>
+      <tr>
+          <td>{{d.champ.question3}}</td>
+            <td>{{d.answer3}}</td>
+            <td>{{d.result3}}</td>
+        </tr>
 
-<div class="container">
-    <form action="/save_mock_answers/" method="POST">{% csrf_token %}
-    {% for i in b%}
-    <p>{{forloop.counter}}.&nbsp;<b>{{i.question}}</b></p>
-    <input type="hidden" value="{{i.question}}" name="question{{forloop.counter}}">
-     <input type="hidden" value="{{level}}" name="level">
-     <input type="hidden" value="{{category}}" name="category">
-   <p class="m-2"><input type="radio" name="choice{{forloop.counter}}" value="{{i.choice1}}" class="m-2">{{i.choice1}}
-    <input type="radio" name="choice{{forloop.counter}}" value="{{i.choice2}}" class="m-4">{{i.choice2}}</p>
-    <p class="m-2"><input type="radio" name="choice{{forloop.counter}}" class="m-2" value="{{i.choice3}}">{{i.choice3}}
-    <input type="radio" class="rounded m-4" name="choice{{forloop.counter}}" value="{{i.choice4}}" >{{i.choice4}}</p>
-    {% endfor %}
-        <button type="submit" class="btn btn-success mb-5">Submit answer</button>
-        </form>
+      </tbody>
+    </table>
 </div>
 </body>
 </html>

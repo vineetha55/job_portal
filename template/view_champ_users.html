@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% include 'adminsidebar.html' %}
+<div class="container">
+    <h2>Championship List</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Candidate</th>
+            <th>Candidate Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for championship in r %}
+          <tr>
+            <td>{{ championship.userid.name }}</td>
+               <td>{{ championship.userid.email }}</td>
+           <td><a href="/view_champ_user_result/{{championship.id}}">View Result</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

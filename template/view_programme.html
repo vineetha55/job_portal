@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% include 'adminsidebar.html' %}
+<div class="container">
+    <h2>Championship List</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Question 1</th>
+          <th>Question 2</th>
+          <th>Question 3</th>
+          <th>Date</th>
+          <th>Action</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for championship in data %}
+          <tr>
+            <td>{{ championship.name }}</td>
+            <td><img src="{{ championship.image }}" style="max-height: 50px;"></td>
+            <td>{{ championship.question1 }}</td>
+            <td>{{ championship.question2 }}</td>
+            <td>{{ championship.question3 }}</td>
+            <td>{{ championship.dt }}</td>
+            <td><a href="">Edit</a></td>
+            <td><a href="">Delete</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

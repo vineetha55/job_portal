@@ -41,35 +41,76 @@
 <br>
 <br>
 <br>
-<section class="cd-hero mt-5">
-<div class="container mt-5">
-  <h2 class="mb-4">Job Application</h2>
-
-  <form action="/save_job_application/{{d.id}}" method="POST" enctype="multipart/form-data">{% csrf_token %}
-    <div class="form-group">
-      <label for="fullName">Full Name:</label>
-      <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" name="fullname" required>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <textarea rows="5" cols="30">{{d.question1}}</textarea>
+      <button onclick="question1();">Click to view Window</button>
     </div>
+     <div class="col-sm-4">
+      <textarea rows="5" cols="30">{{d.question2}}</textarea>
+        <button onclick="question2();">Click to view Window</button>
+     </div>
+     <div class="col-sm-4">
+      <textarea rows="5" cols="30">{{d.question3}}</textarea>
+        <button onclick="question3();">Click to view Window</button>
+         <br>
 
-    <div class="form-group">
-      <label for="email">Email Address:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter your email address" name="email" required>
-    </div>
-
-    <div class="form-group">
-      <label for="resume">Upload Resume:</label>
-      <input type="file" class="form-control-file" id="resume" name="resume" required  accept=".pdf">
-    </div>
-
-    <div class="form-group">
-      <label for="coverLetter">Cover Letter:</label>
-      <textarea class="form-control" id="coverLetter" rows="5" placeholder="Write your cover letter here" name="cover_letter" required></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit Application</button>
+     </div>
+  </div>
+</div>
+<div class="container" id="question1" style="display:none;">
+    <br>
+  <form action="/save_question1/{{d.id}}" method="POST">{% csrf_token %}
+      <div>
+      <label>Answer 1:</label>
+          </div>
+<textarea rows="20" cols="145" style="border:4px solid;" name="answer1"></textarea>
+      <br>
+      <button type="submit" class="btn btn-success mb-5 mt-3">Submit answer</button>
+      <br>
+      <br>
   </form>
-
 </div>
 
+<div class="container" id="question2" style="display:none;">
+    <br>
+  <form action="/save_question2/{{d.id}}" method="POST">{% csrf_token%}
+      <div>
+        <label>Answer 2:</label>
+      </div>
+<textarea rows="20" cols="145" style="border:4px solid;" name="answer2"></textarea>
+      <br>
+      <button type="submit" class="btn btn-success mb-5 mt-3">Submit answer</button>
+      <br>
+      <br>
+  </form>
+</div>
+
+<div class="container" id="question3" style="display:none;">
+    <br>
+  <form action="/save_question3/{{d.id}}" method="POST">{% csrf_token %}
+      <div>
+        <label>Answer 3:</label>
+          </div>
+<textarea rows="20" cols="145" style="border:4px solid;" name="answer3"></textarea>
+      <br>
+      <button type="submit" class="btn btn-success mb-5 mt-3">Submit answer</button>
+      <br>
+      <br>
+  </form>
+</div>
+
+<script>
+  function question1(){
+  document.getElementById("question1").style.display='block';
+  }
+    function question2(){
+  document.getElementById("question2").style.display='block';
+  }
+    function question3(){
+  document.getElementById("question3").style.display='block';
+  }
+</script>
 </body>
 </html>

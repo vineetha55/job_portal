@@ -48,6 +48,7 @@
       <th scope="col">Submitted At</th>
       <th scope="col">Level</th>
       <th scope="col">Category</th>
+      <th scope="col">Total Mark</th>
       <th scope="col">Result</th>
 
     </tr>
@@ -59,11 +60,13 @@
       <td>{{i.dt}}</td>
       <td>{{i.level}}</td>
       <td>{{i.category}}</td>
-      {% if i.result %}
-      <td><p class="btn btn-success">{{i.i.mock_user.result}}</td>
+      <td>{{i.total_mark}}</td>
+      {% if i.Result == 'Passed' %}
+      <td><p class="btn btn-success">{{i.Result}}</p></td>
       {% else %}
-      <td><p class="btn btn-warning">Under Process</p></td>
+      <td><p class="btn btn-danger">{{i.Result}}</p></td>
       {% endif %}
+
     </tr>
   {% endfor %}
   </tbody>

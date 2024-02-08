@@ -375,6 +375,26 @@ def save_mock_answers(request):
         g.Correct_answer=i["answer"]
         g.user_id=request.session["uid"]
         g.save()
+    p=0
+    fa=0
+    g1=tbl_Mock_Answers.objects.filter(mock_user=t.id)
+    for i in g1:
+        if i.Correct_answer == i.selected_answer:
+            p+=1
+
+        else:
+            fa+=1
+    total=p+fa
+    total_75=total * 0.75
+    if p>total_75:
+        res="Passed"
+    else:
+        res="Failed"
+
+    b=tbl_Mock_User.objects.get(id=t.id)
+    b.total_mark=p
+    b.Result=res
+    b.save()
     return redirect("/mock_result/")
 
 def mock_result(request):
@@ -397,4 +417,111 @@ def cmp_reject(request,id):
     d.status="Rejected"
     d.save()
     return redirect("/view_applications/")
+
+def view_shortlisted(request):
+    d=tbl_JobApplication.objects.filter(status="Shortlisted")
+    return render(request,"view_shortlisted.html",{"d":d})
+
+def view_rejected(request):
+    d = tbl_JobApplication.objects.filter(status="Rejected")
+    return render(request,"view_rejected.html",{"d":d})
+
+def view_mock(request):
+    d=tbl_Mock.objects.all()
+    return render(request,"view_mock.html",{"d":d})
+
+def view_qns_ans_admin(request,id):
+    g=tbl_QuestionAnswer.objects.filter(mock=id)
+    return render(request,"view_qns_ans_admin.html",{"g":g})
+
+def view_submissions(request):
+    data=tbl_Mock_User.objects.all()
+    return render(request,"view_submissions.html",{"data":data})
+
+def calculate_result_mock(request,id):
+    f=tbl_Mock_Answers.objects.filter(mock_user=id)
+    return render(request,"calculate_result_mock.html",{"f":f})
+
+
+def view_cmp_mock_result(request,id):
+    k=tbl_Mock_User.objects.filter(userid=id)
+    return render(request,"view_cmp_mock_result.html",{"k":k})
+
+def create_programme(request):
+    return render(request,"create_programme.html")
+
+def save_programme(request):
+    data=tbl_Championship()
+    data.name=request.POST.get("name")
+    data.question1=request.POST.get("question1")
+    data.question2 = request.POST.get("question2")
+    data.question3 = request.POST.get("question3")
+    img=request.FILES['image']
+    fs=FileSystemStorage()
+    v=fs.save(img.name,img)
+    b=fs.url(v)
+    data.image=b
+    data.save()
+    return redirect("/view_programme/")
+
+def view_programme(request):
+    data=tbl_Championship.objects.all()
+    return render(request,"view_programme.html",{"data":data})
+
+def user_championships(request):
+    data = tbl_Championship.objects.all()
+    return render(request, "user_championships.html", {"data": data})
+
+def view_questions_programme(request,id):
+    d=tbl_Championship.objects.get(id=id)
+    return render(request,"view_questions_programme.html",{"d":d})
+
+def save_question1(request,id):
+    q=request.POST.get("answer1")
+    g=tbl_Result_Championship()
+    g.answer1=q
+    g.userid_id=request.session["uid"]
+    g.champ_id=id
+    g.save()
+    return redirect("view_questions_programme",id=id)
+
+def save_question2(request,id):
+    q=request.POST.get("answer2")
+    g=tbl_Result_Championship.objects.get(champ=id,userid=request.session['uid'])
+    g.answer2=q
+
+    g.save()
+    return redirect("view_questions_programme",id=id)
+
+def save_question3(request,id):
+    q=request.POST.get("answer3")
+    print(q)
+    g=tbl_Result_Championship.objects.get(champ=id,userid=request.session['uid'])
+    g.answer3=q
+    g.save()
+    return redirect("view_questions_programme",id=id)
+
+def view_champ_result(request):
+    r=tbl_Championship.objects.all()
+    return render(request,"view_champ_result.html",{"r":r})
+
+def view_champ_users(request,id):
+    r = tbl_Result_Championship.objects.filter(champ=id)
+    return render(request, "view_champ_users.html", {"r": r})
+
+def view_champ_user_result(request,id):
+    f=tbl_Result_Championship.objects.get(id=id)
+    return render(request,"view_champ_user_result.html",{"f":f})
+
+def save_programme_result(request,id):
+    d=tbl_Result_Championship.objects.get(id=id)
+    d.result1=request.POST.get("result1")
+    d.result2 = request.POST.get("result2")
+    d.result3 = request.POST.get("result3")
+    d.save()
+    return redirect("/view_champ_result/")
+
+def view_result_user_programme(request,id):
+    d = tbl_Result_Championship.objects.get(champ=id,userid=request.session['uid'])
+    return render(request,"view_result_user_programme.html",{"d":d})
 

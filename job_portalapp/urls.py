@@ -58,6 +58,25 @@ urlpatterns=[
     path("view_applications/",views.view_applications),
     path("cmp_shortlist/<id>",views.cmp_shortlist),
     path("cmp_reject/<id>",views.cmp_reject),
-    path("view_shortlisted/",views.view_shortlisted)
+    path("view_shortlisted/",views.view_shortlisted),
+    path("view_rejected/",views.view_rejected),
+    path("view_mock/",views.view_mock),
+    path("view_qns_ans_admin/<id>",views.view_qns_ans_admin),
+    path("view_submissions/",views.view_submissions),
+    path("calculate_result_mock/<id>",views.calculate_result_mock),
+    path("view_cmp_mock_result/<id>",views.view_cmp_mock_result),
+    path("create_programme/",views.create_programme),
+    path("save_programme/",views.save_programme),
+    path("view_programme/",views.view_programme),
+    path("user_championships/",views.user_championships),
+    path("view_questions_programme/<id>",views.view_questions_programme,name="view_questions_programme"),
+    path("save_question1/<id>",views.save_question1),
+path("save_question2/<id>",views.save_question2),
+path("save_question3/<id>",views.save_question3),
+    path("view_champ_result/",views.view_champ_result),
+    path("view_champ_users/<id>",views.view_champ_users),
+    path("view_champ_user_result/<id>",views.view_champ_user_result),
+    path("save_programme_result/<id>",views.save_programme_result),
+    path("view_result_user_programme/<id>",views.view_result_user_programme)
 
  ]

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+<title>Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+{% include 'cmpsidebar.html' %}
+
+<div class="container">
+<table class="table">
+  <caption>List of Mock Attempts</caption>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Submitted At</th>
+        <th scope="col">Candidate Name</th>
+      <th scope="col">Level</th>
+      <th scope="col">Category</th>
+      <th scope="col">Total Mark</th>
+      <th scope="col">Result</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in k%}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{i.dt}}</td>
+        <td>{{i.userid.name}}</td>
+      <td>{{i.level}}</td>
+      <td>{{i.category}}</td>
+      <td>{{i.total_mark}}</td>
+      <td>{{i.Result}}</td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

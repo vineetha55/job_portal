@@ -106,3 +106,26 @@ class tbl_Mock_Answers(models.Model):
     user = models.ForeignKey(tbl_Register, on_delete=models.CASCADE, null=True)
 
 
+class tbl_Championship(models.Model):
+    name=models.CharField(max_length=100,null=True)
+    image=models.ImageField(upload_to="champ",null=True)
+    question1=models.TextField(null=True)
+    question2 = models.TextField(null=True)
+    question3 = models.TextField(null=True)
+    dt=models.DateField(auto_now_add=True)
+
+class tbl_Result_Championship(models.Model):
+    champ = models.ForeignKey(tbl_Championship,on_delete=models.CASCADE,null=True)
+    userid = models.ForeignKey(tbl_Register,on_delete=models.CASCADE,null=True)
+    answer1 = models.TextField(null=True)
+    answer2 = models.TextField(null=True)
+    answer3 = models.TextField(null=True)
+    result1 = models.CharField(max_length=30,null=True)
+    result2 = models.CharField(max_length=30, null=True)
+    result3 = models.CharField(max_length=30, null=True)
+    dt = models.DateField(auto_now_add=True)
+
+
+
+
+

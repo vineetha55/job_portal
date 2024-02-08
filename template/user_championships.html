@@ -41,35 +41,31 @@
 <br>
 <br>
 <br>
-<section class="cd-hero mt-5">
-<div class="container mt-5">
-  <h2 class="mb-4">Job Application</h2>
+<div class="container">
+    <h2>Championship List</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Action</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+          <tr>
+            <td>{{ i.name }}</td>
+            <td><img src="{{ i.image }}" style="max-height: 150px; width:150px;"></td>
 
-  <form action="/save_job_application/{{d.id}}" method="POST" enctype="multipart/form-data">{% csrf_token %}
-    <div class="form-group">
-      <label for="fullName">Full Name:</label>
-      <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" name="fullname" required>
-    </div>
+            <td><a href="/view_questions_programme/{{i.id}}">Start</a></td>
+            <td><a href="/view_result_user_programme/{{i.id}}">Result</a></td>
 
-    <div class="form-group">
-      <label for="email">Email Address:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter your email address" name="email" required>
-    </div>
-
-    <div class="form-group">
-      <label for="resume">Upload Resume:</label>
-      <input type="file" class="form-control-file" id="resume" name="resume" required  accept=".pdf">
-    </div>
-
-    <div class="form-group">
-      <label for="coverLetter">Cover Letter:</label>
-      <textarea class="form-control" id="coverLetter" rows="5" placeholder="Write your cover letter here" name="cover_letter" required></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit Application</button>
-  </form>
-
-</div>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
 </body>
 </html>
